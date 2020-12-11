@@ -62,7 +62,6 @@ jobs:
             script: |
               sudo docker pull kuprikak/yambd_final:latest
               sudo docker stop $(sudo docker ps -a -q)
-              sudo docker-compose -p kuprikak/yambd_final:latest up
               
     send_message:
       runs-on: ubuntu-latest
