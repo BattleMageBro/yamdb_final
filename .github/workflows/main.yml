@@ -25,7 +25,7 @@ jobs:
           run: |
             pytest tests/test_requirements.py
             pytest tests/test_settings.py
-            pytest tests/test_yambd_yml.py
+            pytest tests/test_yamdb_yml.py
           
           
     build_and_push_to_docker_hub:
