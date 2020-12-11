@@ -7,10 +7,6 @@ from .models import Comment, Review
 
 from titles.models import Titles
 
-def score_limits(value):
-    if not 1 <= value <= 10:
-        raise ValidationError('Bad request')
-
 
 def score_limits(value):
     if not 1 <= value <= 10:
@@ -38,9 +34,10 @@ class ReviewSerializer(ModelSerializer):
     def validate(self, data):
         title_id = self.context.get('view').kwargs.get('title_id')
         user = self.context.get('request').user
-        
+
         if self.context.get('request').method == 'POST':
-            if (not Titles.objects.filter(id=title_id).exists()) or not bool(data):
+            if (not Titles.objects.filter(id=title_id).exists()) \
+                    or not bool(data):
                 return ValidationError
 
             if Review.objects.filter(author=user, title__id=title_id).exists():

@@ -1,4 +1,3 @@
-from rest_framework.exceptions import ValidationError
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
@@ -21,7 +20,7 @@ class ReviewViewsSet(ModelViewSet):
 
     def set_rating(self):
         title_id = self.kwargs.get('title_id')
-        title = get_object_or_404(Titles,pk=title_id)
+        title = get_object_or_404(Titles, pk=title_id)
         reviews = Review.objects.filter(title=title)
         rating = reviews.aggregate(Avg('score')).get('score__avg')
         title.rating = rating
@@ -36,7 +35,7 @@ class ReviewViewsSet(ModelViewSet):
         title = get_object_or_404(Titles, pk=title_id)
         serializer.save(author=self.request.user, title=title)
         self.set_rating()
-    
+
     def perform_update(self, serializer):
         title_id = self.kwargs.get('title_id')
         title = get_object_or_404(Titles, pk=title_id)
@@ -47,7 +46,6 @@ class ReviewViewsSet(ModelViewSet):
         title_id = self.kwargs.get('title_id')
         title = get_object_or_404(Titles, pk=title_id)
         return Review.objects.filter(title=title)
-
 
 
 class CommentViewsSet(ModelViewSet):
