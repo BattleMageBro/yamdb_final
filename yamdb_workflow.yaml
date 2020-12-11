@@ -1,6 +1,6 @@
 name: yambd_final workflow
 
-on: [ push ]
+on: [push]
 
 jobs:
     tests:
