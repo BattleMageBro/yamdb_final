@@ -16,7 +16,8 @@ class GenresSerializer(serializers.ModelSerializer):
 
 class TitlesSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('id', 'name', 'year', 'description', 'genre', 'category', 'rating')
+        fields = ('id', 'name', 'year', 'description', 'genre', 'category',
+                  'rating')
         model = models.Titles
 
 
@@ -25,5 +26,6 @@ class ListTitlesSerializer(serializers.ModelSerializer):
     category = CategoriesSerializer(read_only=True)
 
     class Meta:
-        fields = ('id', 'name', 'year', 'description', 'genre', 'category', 'rating')
+        fields = ('id', 'name', 'year', 'description',
+                  'genre', 'category', 'rating')
         model = models.Titles

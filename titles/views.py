@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import viewsets, mixins, filters
 from rest_framework.permissions import AllowAny
 from api_users.permissions import IsAdministrator
@@ -8,16 +7,14 @@ from . import serializers
 from .filters import TitlesFilter
 
 
-
-
 class CategoriesViewSet(mixins.ListModelMixin, 
                         mixins.CreateModelMixin,
-                        mixins.DestroyModelMixin, 
+                        mixins.DestroyModelMixin,
                         viewsets.GenericViewSet):
     queryset = Categories.objects.all()
     serializer_class = serializers.CategoriesSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['name',]
+    search_fields = ['name', ]
     lookup_field = 'slug'
     permission_classes_by_action = {'list': [AllowAny],
                                     'create': [IsAdministrator],
@@ -26,20 +23,20 @@ class CategoriesViewSet(mixins.ListModelMixin,
 
     def get_permissions(self):
         try:
-            return [permission() for permission in self.permission_classes_by_action[self.action]]
-        except KeyError: 
+            return [permission() for permission
+                    in self.permission_classes_by_action[self.action]]
+        except KeyError:
             return [permission() for permission in self.permission_classes]
 
-    
 
-class GenresViewSet(mixins.ListModelMixin, 
-                    mixins.CreateModelMixin, 
-                    mixins.DestroyModelMixin, 
+class GenresViewSet(mixins.ListModelMixin,
+                    mixins.CreateModelMixin,
+                    mixins.DestroyModelMixin,
                     viewsets.GenericViewSet):
     queryset = Genres.objects.all()
     serializer_class = serializers.GenresSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['name',]
+    search_fields = ['name', ]
     lookup_field = 'slug'
     permission_classes_by_action = {'list': [AllowAny],
                                     'create': [IsAdministrator],
@@ -48,8 +45,9 @@ class GenresViewSet(mixins.ListModelMixin,
 
     def get_permissions(self):
         try:
-            return [permission() for permission in self.permission_classes_by_action[self.action]]
-        except KeyError: 
+            return [permission() for permission
+                    in self.permission_classes_by_action[self.action]]
+        except KeyError:
             return [permission() for permission in self.permission_classes]
 
 
@@ -60,11 +58,10 @@ class TitlesViewSet(viewsets.ModelViewSet):
     lookup_field = 'id'
     permission_classes_by_action = {'list': [AllowAny],
                                     'create': [IsAdministrator],
-                                    'partial_update' : [IsAdministrator],
+                                    'partial_update': [IsAdministrator],
                                     'retrieve': [AllowAny],
                                     'destroy': [IsAdministrator]
                                     }
-
 
 
     def get_serializer_class(self):
@@ -73,16 +70,12 @@ class TitlesViewSet(viewsets.ModelViewSet):
         if self.action == 'retrieve':
             return serializers.ListTitlesSerializer
         return serializers.TitlesSerializer
-        
+
 
     def get_permissions(self):
         try:
-            return [permission() for permission in self.permission_classes_by_action[self.action]]
-        except KeyError: 
-            return [permission() for permission in self.permission_classes_by_action[self.action]]
-
-    
-
-
-
-
+            return [permission() for permission
+                    in self.permission_classes_by_action[self.action]]
+        except KeyError:
+            return [permission() for permission
+                    in self.permission_classes_by_action[self.action]]

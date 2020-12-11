@@ -5,9 +5,9 @@ from .models import Titles
 
 class TitlesFilter(django_filters.rest_framework.FilterSet):
     genre = filters.CharFilter(field_name="genre")
-    category = filters.CharFilter(field_name="category")   
+    category = filters.CharFilter(field_name="category")
     year = filters.NumberFilter(field_name='year')
-    name = filters.CharFilter(field_name='name', lookup_expr='contains') 
+    name = filters.CharFilter(field_name='name', lookup_expr='contains')
 
     class Meta:
         model = Titles
