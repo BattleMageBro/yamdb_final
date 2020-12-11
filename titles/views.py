@@ -7,7 +7,7 @@ from . import serializers
 from .filters import TitlesFilter
 
 
-class CategoriesViewSet(mixins.ListModelMixin, 
+class CategoriesViewSet(mixins.ListModelMixin,
                         mixins.CreateModelMixin,
                         mixins.DestroyModelMixin,
                         viewsets.GenericViewSet):
@@ -63,14 +63,12 @@ class TitlesViewSet(viewsets.ModelViewSet):
                                     'destroy': [IsAdministrator]
                                     }
 
-
     def get_serializer_class(self):
         if self.action == 'list':
             return serializers.ListTitlesSerializer
         if self.action == 'retrieve':
             return serializers.ListTitlesSerializer
         return serializers.TitlesSerializer
-
 
     def get_permissions(self):
         try:
