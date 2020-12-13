@@ -58,7 +58,6 @@ jobs:
             passphrase: ${{ secrets.PASSPHRASE }} # если ваш ssh-ключ защищен фразой-паролем
             script: |
               sudo docker pull kuprikak/yambd_final:latest
-              sudo docker stop $(sudo docker ps -a -q)
               
     send_message:
       runs-on: ubuntu-latest
