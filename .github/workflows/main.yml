@@ -22,10 +22,7 @@ jobs:
           run: flake8 .
 
         - name: Test with pytest
-          run: |
-            pytest tests/test_requirements.py
-            pytest tests/test_settings.py
-            pytest tests/test_yamdb_yml.py
+          run: pytest
           
           
     build_and_push_to_docker_hub:
@@ -62,7 +59,6 @@ jobs:
             script: |
               sudo docker pull kuprikak/yambd_final:latest
               sudo docker stop $(sudo docker ps -a -q)
-              sudo docker run --rm -d -p 5000:5000 kuprikak/flask-app:latest
               
     send_message:
       runs-on: ubuntu-latest
