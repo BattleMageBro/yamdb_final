@@ -1,3 +1,3 @@
-![yamdb_workflow](https://github.com/BattleMageBro/yamdb_final/workflows/.github/workflows/main.yaml/badge.svg)
+![yambd_final workflow](https://github.com/BattleMageBro/yamdb_final/workflows/yambd_final_workflow/badge.svg)
 # yamdb_final
 yamdb_final
